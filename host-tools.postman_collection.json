@@ -1,0 +1,161 @@
+{
+	"variables": [],
+	"info": {
+		"name": "host-tools",
+		"_postman_id": "1decdf7d-0776-2665-420d-85468a3b4064",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "创建docker容器",
+			"request": {
+				"url": "http://localhost:3000/docker/create",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": "必需修改"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\",\n\t\"containerName\":\"user-consumer\",\n\t\"command\":\"/root/issp/docker/deploy.sh\",\n\t\"projectPort\":\"5000\",\n\t\"webhookPort\":\"5001\",\n\t\"images\":\"dounine/goddess-java:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"user-consumer\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"liguiqin123\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "端口范围检测是否被占用",
+			"request": {
+				"url": "localhost:3000/port/open/1-65535",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": "必需修改"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "检测某个端口是否被占用",
+			"request": {
+				"url": "localhost:3000/port/use/22",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": "必需修改"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "删除容器",
+			"request": {
+				"url": "http://localhost:3000/docker/del/test4",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": "必需修改"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "检测容器是否存在",
+			"request": {
+				"url": "http://localhost:3000/docker/exist/test4",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": "必需修改"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "端口范围检测是否被占用5000-6000",
+			"request": {
+				"url": "localhost:3000/port/open",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": "必需修改"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
