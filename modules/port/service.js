@@ -9,7 +9,8 @@ module.exports = function () {
         return new Promise(function (resolve,reject) {
             var bodyData = {}
             var shellStr = 'ssh server1 \"ssh '+host+' \"nmap -sT -p ' + port + ' localhost\""'
-            cmd.get(shellStr,function(err, data, stderr){
+            var shellStr1 = 'ssh '+host+' \"nmap -sT -p ' + port + ' localhost"'
+            cmd.get(shellStr1,function(err, data, stderr){
                 let ports = data.split('\n')
                 let newPorts = []
                 var isBegin = false, isEnd = false
@@ -52,7 +53,9 @@ module.exports = function () {
         }
         var host = ctx.request.body.host
         return new Promise(function (resolve,reject) {
-            cmd.get('ssh server1 \"ssh ' + host + ' \"nmap -sT -p ' + range + ' localhost\""', function (err, data, stderr) {
+            var ec ='ssh server1 \"ssh ' + host + ' \"nmap -sT -p ' + range + ' localhost\""'
+            var ec1 ='ssh ' + host + ' \"nmap -sT -p ' + range + ' localhost"'
+            cmd.get(ec1, function (err, data, stderr) {
                 let ports = data.split('\n')
                 let newPorts = []
                 var isBegin = false, isEnd = false

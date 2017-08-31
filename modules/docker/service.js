@@ -9,7 +9,9 @@ module.exports = function (ctx) {
     this.exist = function (ctx) {
         var name = ctx.params.name
         var host = ctx.request.body.host
-        return getAsync('ssh server1 \"ssh ' + host + ' \"docker ps -a --format "{{.Names}}" | grep "^' + name + '$" ; echo $?\""').then((data, err) => {
+        var ec = 'ssh server1 \"ssh ' + host + ' \"docker ps -a --format "{{.Names}}" | grep "^' + name + '$" ; echo $?\""'
+        var ec1 = 'ssh ' + host + ' \"docker ps -a --format "{{.Names}}" | grep "^' + name + '$" ; echo $?"'
+        return getAsync(ec1).then((data, err) => {
                 if (err) {
                     ctx.body = {
                         code: 1,
@@ -128,9 +130,10 @@ module.exports = function (ctx) {
                 sheels.push(' ' + formData.images)
                 sheels.push(' ' + formData.command)
                 var cmdExist = async function () {
-                    // console.log(sheels.join(''))
                     var bd = {}
-                    await getAsync('ssh server1 "ssh '+formData.host+' \"' + 'docker ps -a --format "{{.Names}}" | grep "^' + formData.containerName + '$" ; echo $?' + '\""').then((data, err) => {
+                    var ec = 'ssh server1 "ssh '+formData.host+' \"' + 'docker ps -a --format "{{.Names}}" | grep "^' + formData.containerName + '$" ; echo $?' + '\""'
+                    var ec1 = 'ssh '+formData.host+' \"' + 'docker ps -a --format "{{.Names}}" | grep "^' + formData.containerName + '$" ; echo $?' + '"'
+                    await getAsync(ec1).then((data, err) => {
                         if (err) {
                             bd = {
                                 code: 1,
@@ -162,7 +165,9 @@ module.exports = function (ctx) {
 
                         var dockerCreate = async function () {
                             var cmdData = {}
-                            await getAsync('ssh server1 "ssh '+formData.host+' \"' + sheels.join('') + '\""').then((data, err) => {
+                            var eca = 'ssh server1 "ssh '+formData.host+' \"' + sheels.join('') + '\""'
+                            var eca1 = 'ssh '+formData.host+' \"' + sheels.join('') + '"'
+                            await getAsync(eca1).then((data, err) => {
                                     if (err) {
                                         cmdData = {
                                             code: 1,
@@ -206,7 +211,9 @@ module.exports = function (ctx) {
         var host = ctx.request.body.host
         var cmdDel = async function () {
             var bd = {}
-            await getAsync('ssh server1 "ssh '+host+' \"' + ' docker rm ' + name + '\""').then((data, err) => {
+            var ec = 'ssh server1 "ssh '+host+' \"' + ' docker rm ' + name + '\""'
+            var ec1 = 'ssh '+host+' \"' + ' docker rm ' + name + '"'
+            await getAsync(ec1).then((data, err) => {
                 if (err) {
                     bd = {
                         code: 1,
@@ -246,7 +253,9 @@ module.exports = function (ctx) {
         var host = ctx.request.body.host
         var cmdDel = async function () {
             var bd = {}
-            await getAsync('ssh server1 "ssh '+host+' \"' + ' docker stop ' + name + '\""').then((data, err) => {
+            var ec = 'ssh server1 "ssh '+host+' \"' + ' docker stop ' + name + '\""'
+            var ec1 = 'ssh '+host+' \"' + ' docker stop ' + name + '"'
+            await getAsync(ec1).then((data, err) => {
                 if (err) {
                     bd = {
                         code: 1,
