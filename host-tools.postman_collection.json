@@ -10,7 +10,7 @@
 		{
 			"name": "创建docker容器",
 			"request": {
-				"url": "http://localhost:3000/docker/create",
+				"url": "http://bjike.com:3000/docker/create",
 				"method": "POST",
 				"header": [
 					{
@@ -35,7 +35,7 @@
 		{
 			"name": "端口范围检测是否被占用",
 			"request": {
-				"url": "localhost:3000/port/open/1-65535",
+				"url": "http://bjike.com:3000/port/open/1-65535",
 				"method": "POST",
 				"header": [
 					{
@@ -60,7 +60,7 @@
 		{
 			"name": "检测某个端口是否被占用",
 			"request": {
-				"url": "localhost:3000/port/use/22",
+				"url": "http://bjike.com:3000/port/use/22",
 				"method": "POST",
 				"header": [
 					{
@@ -85,7 +85,7 @@
 		{
 			"name": "删除容器",
 			"request": {
-				"url": "http://localhost:3000/docker/del/test4",
+				"url": "http://bjike.com:3000/docker/del/test4",
 				"method": "POST",
 				"header": [
 					{
@@ -110,7 +110,7 @@
 		{
 			"name": "检测容器是否存在",
 			"request": {
-				"url": "http://localhost:3000/docker/exist/test4",
+				"url": "http://bjike.com:3000/docker/exist/test4",
 				"method": "POST",
 				"header": [
 					{
@@ -135,7 +135,7 @@
 		{
 			"name": "端口范围检测是否被占用5000-6000",
 			"request": {
-				"url": "localhost:3000/port/open",
+				"url": "http://bjike.com:3000/port/open",
 				"method": "POST",
 				"header": [
 					{
