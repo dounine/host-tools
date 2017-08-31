@@ -2,7 +2,7 @@ const Promise = require('bluebird')
 const cmd = require('node-cmd')
 const portService = require('../port/service')()
 const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
-
+const isTest = false
 
 module.exports = function (ctx) {
 
@@ -11,7 +11,7 @@ module.exports = function (ctx) {
         var host = ctx.request.body.host
         var ec = 'ssh server1 \"ssh ' + host + ' \"docker ps -a --format "{{.Names}}" | grep "^' + name + '$" ; echo $?\""'
         var ec1 = 'ssh ' + host + ' \"docker ps -a --format "{{.Names}}" | grep "^' + name + '$" ; echo $?"'
-        return getAsync(ec1).then((data, err) => {
+        return getAsync(isTest?ec:ec1).then((data, err) => {
                 if (err) {
                     ctx.body = {
                         code: 1,
@@ -133,7 +133,7 @@ module.exports = function (ctx) {
                     var bd = {}
                     var ec = 'ssh server1 "ssh '+formData.host+' \"' + 'docker ps -a --format "{{.Names}}" | grep "^' + formData.containerName + '$" ; echo $?' + '\""'
                     var ec1 = 'ssh '+formData.host+' \"' + 'docker ps -a --format "{{.Names}}" | grep "^' + formData.containerName + '$" ; echo $?' + '"'
-                    await getAsync(ec1).then((data, err) => {
+                    await getAsync(isTest?ec:ec1).then((data, err) => {
                         if (err) {
                             bd = {
                                 code: 1,
@@ -167,7 +167,7 @@ module.exports = function (ctx) {
                             var cmdData = {}
                             var eca = 'ssh server1 "ssh '+formData.host+' \"' + sheels.join('') + '\""'
                             var eca1 = 'ssh '+formData.host+' \"' + sheels.join('') + '"'
-                            await getAsync(eca1).then((data, err) => {
+                            await getAsync(isTest?eca:eca1).then((data, err) => {
                                     if (err) {
                                         cmdData = {
                                             code: 1,
@@ -213,7 +213,7 @@ module.exports = function (ctx) {
             var bd = {}
             var ec = 'ssh server1 "ssh '+host+' \"' + ' docker rm ' + name + '\""'
             var ec1 = 'ssh '+host+' \"' + ' docker rm ' + name + '"'
-            await getAsync(ec1).then((data, err) => {
+            await getAsync(isTest?ec:ec1).then((data, err) => {
                 if (err) {
                     bd = {
                         code: 1,
@@ -255,7 +255,7 @@ module.exports = function (ctx) {
             var bd = {}
             var ec = 'ssh server1 "ssh '+host+' \"' + ' docker stop ' + name + '\""'
             var ec1 = 'ssh '+host+' \"' + ' docker stop ' + name + '"'
-            await getAsync(ec1).then((data, err) => {
+            await getAsync(isTest?ec:ec1).then((data, err) => {
                 if (err) {
                     bd = {
                         code: 1,

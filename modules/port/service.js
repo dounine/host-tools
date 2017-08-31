@@ -1,7 +1,7 @@
 const Promise = require('bluebird')
 const cmd = require('node-cmd')
 const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
-
+const isTest = false
 
 module.exports = function () {
 
@@ -10,7 +10,7 @@ module.exports = function () {
             var bodyData = {}
             var shellStr = 'ssh server1 \"ssh '+host+' \"nmap -sT -p ' + port + ' localhost\""'
             var shellStr1 = 'ssh '+host+' \"nmap -sT -p ' + port + ' localhost"'
-            cmd.get(shellStr1,function(err, data, stderr){
+            cmd.get(isTest?shellStr:shellStr1,function(err, data, stderr){
                 let ports = data.split('\n')
                 let newPorts = []
                 var isBegin = false, isEnd = false
@@ -55,7 +55,7 @@ module.exports = function () {
         return new Promise(function (resolve,reject) {
             var ec ='ssh server1 \"ssh ' + host + ' \"nmap -sT -p ' + range + ' localhost\""'
             var ec1 ='ssh ' + host + ' \"nmap -sT -p ' + range + ' localhost"'
-            cmd.get(ec1, function (err, data, stderr) {
+            cmd.get(isTest?ec:ec1, function (err, data, stderr) {
                 let ports = data.split('\n')
                 let newPorts = []
                 var isBegin = false, isEnd = false
