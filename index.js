@@ -20,7 +20,7 @@ var router = new Router();
 app.use(body())
 
 app.use(async (ctx, next) => {
-    if(ctx.headers['token']!=token){
+    if(ctx.headers['token']!=token.trim()){
         ctx.body = {code:2,msg:"token密码错误"}
     }else{
         await next(); // 调用下一个middleware
