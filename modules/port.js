@@ -11,7 +11,11 @@ module.exports = function () {
             }
             return aa()
         }).post('/port/open', async = ctx => {
-            return service.getCheckPorts(ctx, '5000-6000')
+            var aa = async function () {
+                let result = await service.getCheckPorts(ctx)
+                ctx.body = result
+            }
+            return aa()
         }).post('/port/use/:port', async = ctx => {
             var aa = async function () {
                 let result = await service.check(ctx.request.body.host,ctx.params.port)
