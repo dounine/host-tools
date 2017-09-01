@@ -45,7 +45,7 @@ module.exports = function () {
                             msg: 'provider端口范围5400 <= port < 5600'
                         }
                     } else {
-                        return service.create1(ctx)
+                        return service.create(ctx)
                     }
                 }
             }

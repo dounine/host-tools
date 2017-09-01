@@ -88,7 +88,7 @@ module.exports = function (ctx) {
         })
     }
 
-    this.create1 = async function (ctx) {
+    this.create = async function (ctx) {
         var formData = ctx.request.body
         var projectPortBody = {}
         var portIsUse = async function () {
