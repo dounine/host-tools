@@ -42,7 +42,7 @@ module.exports = function () {
     }
 
     this.del = function (ctx) {
-        var containerName = ctx.request.body.containerName
+        var containerName = ctx.params.containerName
         let fPath = join(abPath, containerName + '.conf');
         var start = async = async function () {
             var result = await new Promise(function (resolve, reject) {
@@ -66,6 +66,49 @@ module.exports = function () {
             ctx.body = result
         }
 
+        return start()
+
+    }
+
+    this.content = function (ctx) {
+        var cotainerName = ctx.params.name
+        var start = async function () {
+            var fileExit = false
+            var ex = await new Promise(function (resolve,reject) {
+                fs.exists(abPath+'/'+cotainerName+'.conf', function (exists) {
+                    resolve(exists)
+                })
+            })
+
+            if(!ex){
+                ctx.body = {
+                    code:1,
+                    msg:cotainerName+' nginx映射文件不存在'
+                }
+            }else{
+                let result = await new Promise(function (resolve,reject) {
+                    fs.readFile(abPath+'/'+cotainerName+'.conf', 'utf8', function (err, data) {
+                        if (err) {
+                            resolve({
+                                code:0,
+                                msg:'读取nginx映射文件失败',
+                                data:err
+                            })
+                            return console.log(err);
+                        } else {
+                            resolve({
+                                code:0,
+                                msg:'读取nginx映射文件成功',
+                                data:data
+                            })
+                        }
+                    })
+                })
+                ctx.body = result
+            }
+
+
+        }
         return start()
 
     }
