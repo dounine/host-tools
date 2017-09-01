@@ -88,7 +88,7 @@ module.exports = function (ctx) {
         })
     }
 
-    this.create = async function (ctx) {
+    this.create1 = async function (ctx) {
         var formData = ctx.request.body
         var projectPortBody = {}
         var portIsUse = async function () {
@@ -160,6 +160,7 @@ module.exports = function (ctx) {
                             msg: err
                         }
                     });
+
                     if (bd.code == 0 && !bd.data) {
 
                         var dockerCreate = async function () {
@@ -191,7 +192,7 @@ module.exports = function (ctx) {
                             var _host = ctx.request.body.host;
                             var _projectPort = ctx.request.body.projectPort;
                             var _containerName = ctx.request.body.containerName;
-                            let result = await nginxService.create(_domain,_host,_projectPort,_containerName)
+                            let result = await nginxService.create(_domain, _host, _projectPort, _containerName)
                             cmdData.nginx = result
                             ctx.body = cmdData
                         };

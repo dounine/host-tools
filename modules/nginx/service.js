@@ -4,7 +4,7 @@ var abPath = '/root/github/docker-nginx'
 
 module.exports = function () {
 
-    this.create = async function (domain, host, projectPort, containerName) {
+    this.create1 = async function (domain, host, projectPort, containerName) {
         var isNode = containerName.split('-')[1] == 'node'
         if (containerName.split('-')[1] == 'consumer' || containerName.split('-')[1] == 'node') {
             var fileContext = []

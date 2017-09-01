@@ -1,5 +1,4 @@
 var Router = require('koa-router')
-
 const service = require('./docker/service')()
 
 module.exports = function () {
@@ -46,7 +45,7 @@ module.exports = function () {
                             msg: 'provider端口范围5400 <= port < 5600'
                         }
                     } else {
-                        return service.create(ctx)
+                        return service.create1(ctx)
                     }
                 }
             }
