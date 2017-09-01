@@ -26,7 +26,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"host\":\"1.host.bjike.com\",\n\t\"containerName\":\"user-consumer\",\n\t\"domain\":\"user.issp.bjike.com\",\n\t\"command\":\"/root/issp/docker/deploy.sh\",\n\t\"projectPort\":\"5200\",\n\t\"images\":\"dounine/goddess-java:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"user-consumer\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
+					"raw": "{\n\t\"host\":\"1.host.bjike.com\",\n\t\"containerName\":\"user-consumer\",\n\t\"domain\":\"user.issp.bjike.com\",\n\t\"command\":\"/root/issp/docker/deploy.sh\",\n\t\"projectPort\":\"5200\",\n\t\"images\":\"dounine/goddess-java:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"user-consumer\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"liguiqin123\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
 				},
 				"description": ""
 			},
@@ -235,7 +235,13 @@
 			"request": {
 				"url": "http://bjike.com:3000/nginx/list",
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "abc123",
+						"description": ""
+					}
+				],
 				"body": {},
 				"description": ""
 			},
