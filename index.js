@@ -29,8 +29,9 @@ app.use(async (ctx, next) => {
 
 app.use(require(path.join(__dirname,'/modules','port.js'))().routes());//端口路由
 app.use(require(path.join(__dirname,'/modules','log.js'))().routes());//日志路由
-app.use(require(path.join(__dirname,'/modules','docker.js'))().routes());//日志路由
-app.use(require(path.join(__dirname,'/modules','webhook.js'))().routes());//日志路由
+app.use(require(path.join(__dirname,'/modules','docker.js'))().routes());//docker容器路由
+app.use(require(path.join(__dirname,'/modules','webhook.js'))().routes());//自动部署路由
+app.use(require(path.join(__dirname,'/modules','nginx.js'))().routes());//nginx路由
 
 app.use(router.routes())
 

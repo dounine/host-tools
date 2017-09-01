@@ -1,6 +1,7 @@
 const Promise = require('bluebird')
 const cmd = require('node-cmd')
 const portService = require('../port/service')()
+const nginxService = require('../nginx/service')()
 const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
 const isTest = false
 
@@ -186,6 +187,12 @@ module.exports = function (ctx) {
                                     msg: err
                                 }
                             })
+                            var _domain = ctx.request.body.domain;
+                            var _host = ctx.request.body.host;
+                            var _projectPort = ctx.request.body.projectPort;
+                            var _containerName = ctx.request.body.containerName;
+                            let result = await nginxService.create(_domain,_host,_projectPort,_containerName)
+                            cmdData.nginx = result
                             ctx.body = cmdData
                         };
                         return dockerCreate()
