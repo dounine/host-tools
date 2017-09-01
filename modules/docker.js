@@ -17,7 +17,7 @@ module.exports = function () {
                     msg:'containerName不能为空'
                 }
             }else{
-                var cns = containerName.indexOf('-')[1]
+                var cns = containerName.split('-')[1]
                 if(containerName.indexOf('-')==-1){
                     ctx.body = {
                         code:1,
