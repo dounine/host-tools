@@ -89,15 +89,13 @@ module.exports = function (ctx) {
 
     this.create = async function (ctx) {
         var formData = ctx.request.body
-        var projectPortBody = {}, webhookPortBody = {}
+        var projectPortBody = {}
         var portIsUse = async function () {
             projectPortBody = await portService.check(formData.host,formData.projectPort)
-            webhookPortBody = await portService.check(formData.host,formData.webhookPort)
+            // webhookPortBody = await portService.check(formData.host,formData.webhookPort)
             if (projectPortBody.code == 0 && projectPortBody.data) {
                 ctx.body = {code: 0, msg: ('projectPort:' + formData.projectPort + '端口已经被使用')}
-            } else if (webhookPortBody.code == 0 && webhookPortBody.data) {
-                ctx.body = {code: 0, msg: ('webhookPort:' + formData.webhookPort + '端口已经被使用')}
-            } else {
+            }else {
                 var sheels = [
                     'docker run -dti',
                 ]
@@ -119,7 +117,7 @@ module.exports = function (ctx) {
 
                 sheels.push(' -e projectPshellPre=' + projectPshellPre)
                 sheels.push(' -e projectPshellPos=' + projectPshellPos)
-                sheels.push(' -e webhookPort=PORT=' + formData.webhookPort)
+                // sheels.push(' -e webhookPort=PORT=' + formData.webhookPort)
                 formData.volumes.forEach(function (vol) {
                     sheels.push(' -v ' + vol.host + ':' + vol.container + ':' + (vol.readonly ? '' : 'rw'))
                 })
