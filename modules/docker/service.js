@@ -3,7 +3,7 @@ const cmd = require('node-cmd')
 const portService = require('../port/service')()
 const nginxService = require('../nginx/service')()
 const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
-const isTest = true
+const isTest = false
 
 module.exports = function (ctx) {
 
