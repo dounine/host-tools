@@ -5,7 +5,7 @@ const nginxService = require('../nginx/service')()
 const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
 const isTest = false
 
-module.exports = function (ctx) {
+module.exports = function () {
 	this.filter = function (ctx) {
         var name = ctx.params.name
         var ec1 = 'clush -g issp "docker ps --filter name=' + name + '" | grep -v "CONTAINER ID"'
