@@ -1,7 +1,8 @@
 const cmd = require('node-cmd')
+const Promise = require('bluebird')
 const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
 
-module.exports = function (ctx) {
+module.exports = function () {
 
     this.free = function (ctx) {
         var name = ctx.params.name
