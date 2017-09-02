@@ -16,10 +16,43 @@ module.exports = function () {
                     data: err
                 }
             } else {
+                var hosts = []
+                var aas = data[0].split(/\n/)
+                for(var a in aas){
+                    var aa = aas[a].split('      ')
+                    if(aa.length>4){
+                        hosts.push({
+                            '主机地扯':aa[0].trim().split(':')[0],
+                            '全部(m)':aa[1].trim(),
+                            '使用(m)':aa[2].trim(),
+                            '剩余(m)':aa[3].trim()
+                        })
+                    }
+                }
+                hosts.push({
+                    '主机地扯':'aaa',
+                    '全部(m)':(Math.random()*700 + 15000|0)+"",
+                    '使用(m)':(Math.random()*700 + 15000|0)+"",
+                    '剩余(m)':(Math.random()*700 + 15000|0)+""
+                })
+                hosts.push({
+                    '主机地扯':'cccc',
+                    '全部(m)':(Math.random()*700 + 15000|0)+"",
+                    '使用(m)':(Math.random()*700 + 15000|0)+"",
+                    '剩余(m)':(Math.random()*700 + 15000|0)+""
+                })
+                hosts.sort(function (a,b) {
+                    if(b['剩余(m)']==a['剩余(m)']){
+                        return 0
+                    }else if(parseInt(b['剩余(m)'])>parseInt(a['剩余(m)'])){
+                        return 1
+                    }
+                    return -1
+                })
                 ctx.body = {
                     code: 0,
                     msg: "free",
-                    data: data[0]
+                    data: hosts
                 }
 
             }
