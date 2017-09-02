@@ -6,7 +6,7 @@ module.exports = function () {
 
     this.free = function (ctx) {
         var name = ctx.params.name
-        var ec1 = 'clush -g issp "free -m | grep -v Swap | grep -v total"'
+        var ec1 = 'clush -g host "free -m | grep -v Swap | grep -v total"'
 
         return getAsync(ec1).then((data, err) => {
             if (err) {
