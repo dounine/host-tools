@@ -29,18 +29,6 @@ module.exports = function () {
                         })
                     }
                 }
-                hosts.push({
-                    '主机地扯':'aaa',
-                    '全部(m)':(Math.random()*700 + 15000|0)+"",
-                    '使用(m)':(Math.random()*700 + 15000|0)+"",
-                    '剩余(m)':(Math.random()*700 + 15000|0)+""
-                })
-                hosts.push({
-                    '主机地扯':'cccc',
-                    '全部(m)':(Math.random()*700 + 15000|0)+"",
-                    '使用(m)':(Math.random()*700 + 15000|0)+"",
-                    '剩余(m)':(Math.random()*700 + 15000|0)+""
-                })
                 hosts.sort(function (a,b) {
                     if(b['剩余(m)']==a['剩余(m)']){
                         return 0
