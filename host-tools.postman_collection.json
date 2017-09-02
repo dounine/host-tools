@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "post配置文件",
-		"_postman_id": "1decdf7d-0776-2665-420d-85468a3b4064",
+		"_postman_id": "ec06ec03-9c1e-47ba-f171-d0dfb44150c0",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -32,6 +32,23 @@
 							"mode": "raw",
 							"raw": "{\n\t\"host\":\"1.host.bjike.com\",\n\t\"containerName\":\"user-consumer\",\n\t\"domain\":\"user.issp.bjike.com\",\n\t\"command\":\"/root/issp/docker/deploy.sh\",\n\t\"projectPort\":\"5200\",\n\t\"images\":\"dounine/goddess-java:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"user-consumer\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
 						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "查询容器在哪台主机中",
+					"request": {
+						"url": "http://bjike.com:3000/docker/filter/user-consumer",
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "abc123",
+								"description": ""
+							}
+						],
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -184,7 +201,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -201,7 +221,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -239,7 +262,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -281,7 +307,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -339,6 +368,29 @@
 							"mode": "raw",
 							"raw": "{\n  \"object_kind\": \"push\",\n  \"before\": \"95790bf891e76fee5e1747ab589903a6a1f80f22\",\n  \"after\": \"da1560886d4f094c3e6c9ef40349f7d38b5d27d7\",\n  \"ref\": \"refs/heads/master\",\n  \"checkout_sha\": \"da1560886d4f094c3e6c9ef40349f7d38b5d27d7\",\n  \"user_id\": 4,\n  \"user_name\": \"John Smith\",\n  \"user_email\": \"john@example.com\",\n  \"user_avatar\": \"https://s.gravatar.com/avatar/d4c74594d841139328695756648b6bd6?s=8://s.gravatar.com/avatar/d4c74594d841139328695756648b6bd6?s=80\",\n  \"project_id\": 15,\n  \"project\":{\n    \"name\":\"Diaspora\",\n    \"description\":\"\",\n    \"web_url\":\"http://example.com/mike/diaspora\",\n    \"avatar_url\":null,\n    \"git_ssh_url\":\"git@example.com:mike/diaspora.git\",\n    \"git_http_url\":\"http://example.com/mike/diaspora.git\",\n    \"namespace\":\"Mike\",\n    \"visibility_level\":0,\n    \"path_with_namespace\":\"mike/diaspora\",\n    \"default_branch\":\"master\",\n    \"homepage\":\"http://example.com/mike/diaspora\",\n    \"url\":\"git@example.com:mike/diaspora.git\",\n    \"ssh_url\":\"git@example.com:mike/diaspora.git\",\n    \"http_url\":\"http://example.com/mike/diaspora.git\"\n  },\n  \"repository\":{\n    \"name\": \"Diaspora\",\n    \"url\": \"git@example.com:mike/diaspora.git\",\n    \"description\": \"\",\n    \"homepage\": \"http://example.com/mike/diaspora\",\n    \"git_http_url\":\"http://example.com/mike/diaspora.git\",\n    \"git_ssh_url\":\"git@example.com:mike/diaspora.git\",\n    \"visibility_level\":0\n  },\n  \"commits\": [\n    {\n      \"id\": \"b6568db1bc1dcd7f8b4d5a946b0b91f9dacd7327\",\n      \"message\": \"Update Catalan translation to e38cb41.\",\n      \"timestamp\": \"2011-12-12T14:27:31+02:00\",\n      \"url\": \"http://example.com/mike/diaspora/commit/b6568db1bc1dcd7f8b4d5a946b0b91f9dacd7327\",\n      \"author\": {\n        \"name\": \"Jordi Mallach\",\n        \"email\": \"jordi@softcatala.org\"\n      },\n      \"added\": [\"CHANGELOG\"],\n      \"modified\": [\"app/controller/application.rb\"],\n      \"removed\": []\n    },\n    {\n      \"id\": \"da1560886d4f094c3e6c9ef40349f7d38b5d27d7\",\n      \"message\": \"fixed readme\",\n      \"timestamp\": \"2012-01-03T23:36:29+02:00\",\n      \"url\": \"http://example.com/mike/diaspora/commit/da1560886d4f094c3e6c9ef40349f7d38b5d27d7\",\n      \"author\": {\n        \"name\": \"GitLab dev user\",\n        \"email\": \"gitlabdev@dv6700.(none)\"\n      },\n      \"added\": [\"CHANGELOG\"],\n      \"modified\": [\"app/controller/application.rb\"],\n      \"removed\": []\n    }\n  ],\n  \"total_commits_count\": 4\n}"
 						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "host",
+			"description": "",
+			"item": [
+				{
+					"name": "查看docker主机内使用情况",
+					"request": {
+						"url": "http://bjike.com:3000/host/free",
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "abc123",
+								"description": ""
+							}
+						],
+						"body": {},
 						"description": ""
 					},
 					"response": []
