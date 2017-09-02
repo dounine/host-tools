@@ -52,7 +52,9 @@ module.exports = function () {
 
         }).post('/docker/del/:name', async = ctx => {
             return service.del(ctx)
-        }).post('/docker/stop/:name', async = ctx => {
+        }).get('/docker/filter/:name',async = ctx => {
+	    return service.filter(ctx)
+	}).post('/docker/stop/:name', async = ctx => {
             return service.stop(ctx)
         })
 }

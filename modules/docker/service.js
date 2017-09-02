@@ -6,6 +6,32 @@ const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
 const isTest = false
 
 module.exports = function (ctx) {
+	this.filter = function (ctx) {
+        var name = ctx.params.name
+        var ec1 = 'clush -g issp "docker ps --filter name=' + name + '" | grep -v "CONTAINER ID"'
+
+        return getAsync(ec1).then((data, err) => {
+            if (err) {
+                ctx.body = {
+                    code: 1,
+                    msg: "not filter.",
+                    data: err
+                }
+            } else {
+                ctx.body = {
+                    code: 0,
+                    msg: "filter",
+                    data: data[0]
+                }
+
+            }
+        }).catch(err => {
+            ctx.body = {
+                code: 1,
+                msg: err
+            }
+        });
+    }
 
     this.exist = function (ctx) {
         var name = ctx.params.name
