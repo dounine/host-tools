@@ -20,7 +20,7 @@
 							{
 								"key": "token",
 								"value": "abc123",
-								"description": "必需修改"
+								"description": ""
 							},
 							{
 								"key": "Content-Type",
@@ -30,7 +30,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"host\":\"1.host.bjike.com\",\n\t\"containerName\":\"user-consumer\",\n\t\"domain\":\"user.issp.bjike.com\",\n\t\"command\":\"/root/issp/docker/deploy.sh\",\n\t\"projectPort\":\"5200\",\n\t\"images\":\"dounine/goddess-java:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"user-consumer\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"liguiqin\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
+							"raw": "{\n\t\"host\":\"请修改\",\n\t\"containerName\":\"请修改\",\n\t\"domain\":\"请修改\",\n\t\"command\":\"/root/issp/docker/请修改.sh\",\n\t\"projectPort\":\"请修改[5000~5600]\",\n\t\"images\":\"dounine/goddess-请修改:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"请修改\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"请修改\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"请修改\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
 						},
 						"description": ""
 					},
@@ -289,7 +289,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"domain\":\"user.issp.bjike.com\",\n\t\"host\":\"1.host.bjike.com\",\n\t\"projectPort\":\"5200\",\n\t\"containerName\":\"user-consumer\"\n}"
+							"raw": "{\n\t\"domain\":\"域名\",\n\t\"host\":\"部署主机\",\n\t\"projectPort\":\"项目运行端口\",\n\t\"containerName\":\"容器名称\"\n}"
 						},
 						"description": ""
 					},
