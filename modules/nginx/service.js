@@ -8,9 +8,19 @@ module.exports = function () {
         var isNode = containerName.split('-')[1] == 'node'
         if (containerName.split('-')[1] == 'consumer' || containerName.split('-')[1] == 'node') {
             var fileContext = []
+            if(isNode){
+                fileContext.push('server {')
+                fileContext.push('    listen   80;')
+                fileContext.push('    server_name '+domain+';')
+                fileContext.push('    return     301 https://'+domain+';')
+                fileContext.push('}')
+            }
             fileContext.push('server {')
-            fileContext.push('    listen ' + (isNode ? 80 : 8080) + ';')
+            fileContext.push('    listen ' + (isNode ? 443 : 8080) + ';')
             fileContext.push('    server_name ' + domain + ';')
+            fileContext.push('    ssl on;')
+            fileContext.push('    ssl_certificate /etc/nginx/ssls/issp.bjike.com.crt;')
+            fileContext.push('    ssl_certificate_key /etc/nginx/ssls/issp.bjike.com.key;')
             fileContext.push('    access_log on;')
             fileContext.push('    location / {')
             fileContext.push('        client_max_body_size    100m;')
