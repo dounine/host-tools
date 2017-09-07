@@ -14,6 +14,7 @@ module.exports = function () {
                 fileContext.push('    server_name '+domain+';')
                 fileContext.push('    return     301 https://'+domain+';')
                 fileContext.push('}')
+                fileContext.push('')
             }
             fileContext.push('server {')
             fileContext.push('    listen ' + (isNode ? 443 : 8080) + ';')
