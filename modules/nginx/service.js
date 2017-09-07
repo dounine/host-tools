@@ -22,6 +22,7 @@ module.exports = function () {
             fileContext.push('    ssl_certificate /etc/nginx/ssls/issp.bjike.com.crt;')
             fileContext.push('    ssl_certificate_key /etc/nginx/ssls/issp.bjike.com.key;')
             fileContext.push('    access_log on;')
+            fileContext.push('');
             fileContext.push('    location / {')
             fileContext.push('        client_max_body_size    100m;')
             fileContext.push('        proxy_pass http://' + host + ':' + projectPort + ';')
