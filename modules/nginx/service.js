@@ -12,7 +12,7 @@ module.exports = function () {
                 fileContext.push('server {')
                 fileContext.push('    listen   80;')
                 fileContext.push('    server_name '+domain+';')
-                fileContext.push('    return     301 https://'+domain+';')
+                fileContext.push('    return     301 https://$host$request_uri;')
                 fileContext.push('}')
                 fileContext.push('')
             }
