@@ -31,6 +31,12 @@ module.exports = function () {
             fileContext.push('        proxy_set_header  X-Real-IP  $remote_addr;')
             fileContext.push('        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;')
             fileContext.push('    }')
+            fileContext.push('    error_page 404 /404.html;')
+            fileContext.push('    location = /40x.html {')
+            fileContext.push('    }')
+            fileContext.push('    error_page 500 502 503 504 /50x.html;')
+            fileContext.push('    location = /50x.html {')
+            fileContext.push('    }')
             fileContext.push('}')
             var result = await new Promise(function (resolve, reject) {
                 fs.writeFile(abPath + "/" + containerName + ".conf", fileContext.join('\n'), function (err) {
