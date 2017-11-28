@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "post配置文件",
-		"_postman_id": "ec06ec03-9c1e-47ba-f171-d0dfb44150c0",
+		"_postman_id": "5e07245d-2f1c-481b-61f4-d4ef3896d7d0",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -30,7 +30,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"host\":\"请修改\",\n\t\"containerName\":\"请修改\",\n\t\"domain\":\"请修改\",\n\t\"command\":\"/root/issp/docker/请修改.sh\",\n\t\"projectPort\":\"请修改[5000~5600]\",\n\t\"images\":\"dounine/goddess-请修改:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"请修改\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"请修改\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"请修改\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
+							"raw": "{\n\t\"host\":\"请修改\",\n\t\"containerName\":\"请修改\",\n\t\"domain\":\"请修改\",\n\t\"command\":\"/root/issp/docker/请修改.sh\",\n\t\"projectPort\":\"请修改[5000~5600]\",\n\t\"images\":\"dounine/goddess-请修改:latest\",\n\t\"network\":\"host\",\n\t\"restart\":\"on-failure:3\",\n\t\"jvm_Xms\":\"200\",\n\t\"jvm_Xmx\":\"200\",\n\t\"jvm_jmx_remote\":\"false\",\n\t\"jvm_jmx_port\":\"如果remote:true,必填\",\n\t\"jvm_jmx_hostname\":\"必填\",\n\t\"jvm_jmx_username\":\"必填\",\n\t\"jvm_jmx_password\":\"必填\",\n\t\"jvm_jmx_role_readonly\":\"false\",\n\t\"environments\":[\n\t\t{\n\t\t\t\"name\":\"project\",\n\t\t\t\"value\":\"请修改\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"user\",\n\t\t\t\"value\":\"请修改\"\n\t\t},{\n\t\t\t\"name\":\"password\",\n\t\t\t\"value\":\"请修改\"\n\t\t}\n\t],\n\t\"volumes\":[\n\t\t{\n\t\t\t\"container\":\"/root/issp\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/root/issp\"\n\t\t},{\n\t\t\t\"container\":\"/etc/timezone\",\n\t\t\t\"readonly\":true,\n\t\t\t\"host\":\"/etc/timezone\"\n\t\t}\n\t]\n}"
 						},
 						"description": ""
 					},
@@ -48,7 +48,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []
@@ -390,7 +393,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
 					},
 					"response": []

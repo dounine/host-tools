@@ -147,7 +147,8 @@ module.exports = function () {
                 sheels.push(' -e jvm_Xms=' + formData.jvm_Xms||200)
                 sheels.push(' -e jvm_Xmx=' + formData.jvm_Xmx||200)
                 // sheels.push(' -e webhookPort=PORT=' + formData.webhookPort)
-                if(formData.jvm_jmx == 'true'){//开启远程调优
+                if(formData.jvm_jmx_remote == 'true'){//开启远程调优
+                    sheels.push(' -e jvm_jmx_remote=true')
                     if(!formData.jvm_jmx_port){
                         ctx.body = {code: 0, msg: ('jvm_jmx_port 必填')}
                         return;
