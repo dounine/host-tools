@@ -144,8 +144,8 @@ module.exports = function () {
 
                 sheels.push(' -e projectPshellPre=' + projectPshellPre)
                 sheels.push(' -e projectPshellPos=' + projectPshellPos)
-                sheels.push(' -e jvm_Xms=' + formData.jvm_Xms||200)
-                sheels.push(' -e jvm_Xmx=' + formData.jvm_Xmx||200)
+                sheels.push(' -e jvm_Xms=' + formData.jvm_Xms||'200m')
+                sheels.push(' -e jvm_Xmx=' + formData.jvm_Xmx||'200m')
                 // sheels.push(' -e webhookPort=PORT=' + formData.webhookPort)
                 if(formData.jvm_jmx_remote == 'true'){//开启远程调优
                     sheels.push(' -e jvm_jmx_remote=true')
