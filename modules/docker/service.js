@@ -144,7 +144,41 @@ module.exports = function () {
 
                 sheels.push(' -e projectPshellPre=' + projectPshellPre)
                 sheels.push(' -e projectPshellPos=' + projectPshellPos)
+                sheels.push(' -e jvm_Xms=' + formData.jvm_Xms||200)
+                sheels.push(' -e jvm_Xmx=' + formData.jvm_Xmx||200)
                 // sheels.push(' -e webhookPort=PORT=' + formData.webhookPort)
+                if(formData.jvm_jmx == 'true'){//开启远程调优
+                    if(!formData.jvm_jmx_port){
+                        ctx.body = {code: 0, msg: ('jvm_jmx_port 必填')}
+                        return;
+                    }
+                    sheels.push(' -e jvm_jmx_port=' + formData.jvm_jmx_port)
+                    if(!formData.jvm_jmx_hostname){
+                        ctx.body = {code: 0, msg: ('jvm_jmx_hostname 必填')}
+                        return;
+                    }
+                    sheels.push(' -e jvm_jmx_hostname=' + formData.jvm_jmx_hostname)
+                    if(!formData.jvm_jmx_username){
+                        ctx.body = {code: 0, msg: ('jvm_jmx_username 必填')}
+                        return;
+                    }
+                    sheels.push(' -e jvm_jmx_username=' + formData.jvm_jmx_username)
+                    if(!formData.jvm_jmx_password){
+                        ctx.body = {code: 0, msg: ('jvm_jmx_password 必填')}
+                        return;
+                    }
+                    sheels.push(' -e jvm_jmx_password=' + formData.jvm_jmx_password)
+                    if(formData.jvm_jmx_role_readonly===undefined){
+                        ctx.body = {code: 0, msg: ('jvm_jmx_role_readonly 必填')}
+                        return;
+                    }
+                    if(formData.jvm_jmx_role_readonly=='true'){
+                        sheels.push(' -e jvm_jmx_role=readonly')
+                    }else{
+                        sheels.push(' -e jvm_jmx_role=readwrite')
+                    }
+                    
+                }
                 formData.volumes.forEach(function (vol) {
                     sheels.push(' -v ' + vol.host + ':' + vol.container + ':' + (vol.readonly ? '' : 'rw'))
                 })
