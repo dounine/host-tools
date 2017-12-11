@@ -17,7 +17,7 @@ module.exports = function () {
                 fileContext.push('')
             }
             fileContext.push('server {')
-            fileContext.push('    listen ' + (isNode ? 443 : 8080) + ';')
+            fileContext.push('    listen ' + (isNode ? 443 : 9090) + ';')
             fileContext.push('    server_name ' + domain + ';')
             fileContext.push('    ssl on;')
             fileContext.push('    ssl_certificate /etc/nginx/ssls/issp.bjike.com.crt;')
