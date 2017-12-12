@@ -184,7 +184,7 @@ module.exports = function () {
                     sheels.push(' -v ' + vol.host + ':' + vol.container + ':' + (vol.readonly ? '' : 'rw'))
                 })
                 sheels.push(' --network ' + formData.network)
-                sheels.push(' --hostname ' + formData.host)
+                //sheels.push(' --hostname ' + formData.host)//TODO enable dnsmasq not working 
                 sheels.push(' --name ' + formData.containerName)
                 sheels.push(' --restart=' + formData.restart)
                 sheels.push(' ' + formData.images)
