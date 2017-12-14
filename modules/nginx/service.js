@@ -1,6 +1,9 @@
 var fs = require('fs');
+const Promise = require('bluebird')
 var join = require('path').join;
 var abPath = '/root/github/docker-nginx'
+const cmd = require('node-cmd')
+const getAsync = Promise.promisify(cmd.get, {multiArgs: true, context: cmd})
 
 module.exports = function () {
 
@@ -8,36 +11,52 @@ module.exports = function () {
         var isNode = containerName.split('-')[1] == 'node'
         if (containerName.split('-')[1] == 'consumer' || containerName.split('-')[1] == 'node') {
             var fileContext = []
-            if(isNode){
+            //if(isNode){
                 fileContext.push('server {')
-                fileContext.push('    listen   80;')
+                fileContext.push('    listen ' + (isNode ? 80 : 8080) + ';')
                 fileContext.push('    server_name '+domain+';')
-                fileContext.push('    return     301 https://$host$request_uri;')
+                //fileContext.push('    return     301 https://$host$request_uri;')
+                fileContext.push('    location / {')
+            	fileContext.push('        client_max_body_size    300m;')
+            	fileContext.push('        proxy_pass http://' + host + ':' + projectPort + ';')
+            	fileContext.push('        proxy_set_header  Host  $host;')
+            	fileContext.push('        proxy_set_header  X-Real-IP  $remote_addr;')
+            	fileContext.push('        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;')
+            	fileContext.push('    }')
+            	fileContext.push('    error_page 404 /404.html;')
+            	fileContext.push('    location = /40x.html {')
+            	fileContext.push('    }')
+            	fileContext.push('    error_page 500 502 503 504 /50x.html;')
+            	fileContext.push('    location = /50x.html {')
+            	fileContext.push('    }')
                 fileContext.push('}')
                 fileContext.push('')
-            }
-            fileContext.push('server {')
-            fileContext.push('    listen ' + (isNode ? 443 : 9090) + ';')
-            fileContext.push('    server_name ' + domain + ';')
-            fileContext.push('    ssl on;')
-            fileContext.push('    ssl_certificate /etc/nginx/ssls/issp.bjike.com.crt;')
-            fileContext.push('    ssl_certificate_key /etc/nginx/ssls/issp.bjike.com.key;')
-            fileContext.push('    access_log on;')
-            fileContext.push('');
-            fileContext.push('    location / {')
-            fileContext.push('        client_max_body_size    100m;')
-            fileContext.push('        proxy_pass http://' + host + ':' + projectPort + ';')
-            fileContext.push('        proxy_set_header  Host  $host;')
-            fileContext.push('        proxy_set_header  X-Real-IP  $remote_addr;')
-            fileContext.push('        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;')
-            fileContext.push('    }')
-            fileContext.push('    error_page 404 /404.html;')
-            fileContext.push('    location = /40x.html {')
-            fileContext.push('    }')
-            fileContext.push('    error_page 500 502 503 504 /50x.html;')
-            fileContext.push('    location = /50x.html {')
-            fileContext.push('    }')
-            fileContext.push('}')
+            //}
+            //fileContext.push('server {')
+            //fileContext.push('    listen ' + (isNode ? 443 : 9090) + ';')
+	    //if(isNode){
+            //	fileContext.push('    listen 9089;')
+	    //}
+            //fileContext.push('    server_name ' + domain + ';')
+            //fileContext.push('    ssl on;')
+            //fileContext.push('    ssl_certificate /etc/nginx/ssls/issp.bjike.com.crt;')
+            //fileContext.push('    ssl_certificate_key /etc/nginx/ssls/issp.bjike.com.key;')
+            //fileContext.push('    access_log on;')
+            //fileContext.push('');
+            //fileContext.push('    location / {')
+            //fileContext.push('        client_max_body_size    100m;')
+            //fileContext.push('        proxy_pass http://' + host + ':' + projectPort + ';')
+            //fileContext.push('        proxy_set_header  Host  $host;')
+            //fileContext.push('        proxy_set_header  X-Real-IP  $remote_addr;')
+            //fileContext.push('        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;')
+            //fileContext.push('    }')
+            //fileContext.push('    error_page 404 /404.html;')
+            //fileContext.push('    location = /40x.html {')
+            //fileContext.push('    }')
+            //fileContext.push('    error_page 500 502 503 504 /50x.html;')
+            //fileContext.push('    location = /50x.html {')
+            //fileContext.push('    }')
+            //fileContext.push('}')
             var result = await new Promise(function (resolve, reject) {
                 fs.writeFile(abPath + "/" + containerName + ".conf", fileContext.join('\n'), function (err) {
                     if (err) {
@@ -48,10 +67,30 @@ module.exports = function () {
                         })
                         return console.log(err);
                     }
-                    resolve({
-                        code: 0,
-                        msg: (containerName + ".conf 文件创建成功")
+			var ec1 = 'docker exec -d nginx reload'
+
+        getAsync(ec1).then((data, err) => {
+            if (err) {
+		resolve({
+                        code: 1,
+                        msg: err
                     })
+            } else {
+		resolve({
+                        code: 0,
+                        msg: (containerName + ".conf 配置文件创建成功.")
+                    })
+            }
+        }).catch(err => {
+		resolve({
+                        code: 1,
+                        msg: err
+                    })
+        });
+                   // resolve({
+                  //     code: 0,
+                   //     msg: (containerName + ".conf 文件创建成功")
+                    //})
                 });
             })
             return result
